@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Entity
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 public class Purchaser {
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private BigInteger id;
     @Basic
     @Column(name = "name", nullable = false, length = 50)
     private String name;
@@ -31,7 +32,7 @@ public class Purchaser {
     private String direction;
     @Basic
     @Column(name = "phone", nullable = false)
-    private int phone;
+    private String phone;
     @Basic
     @Column(name = "date_purchase", nullable = false)
     private LocalDate datePurchase;

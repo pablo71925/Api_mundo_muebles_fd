@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Data
@@ -15,15 +16,18 @@ import java.time.LocalDate;
 
 public class PurchaserDTO {
     @NotNull
-    private int id;
+    private BigInteger id;
     @NotNull
     private String name;
     @NotNull
+    @Email
     private String email;
     @NotNull
     private String direction;
     @NotNull
-    private int phone;
+    @Size(min = 0, max = 10)
+    @Pattern(regexp="(^$|[0-9]{10})")
+    private String phone;
     @NotNull
     private LocalDate datePurchase;
     @NotNull
