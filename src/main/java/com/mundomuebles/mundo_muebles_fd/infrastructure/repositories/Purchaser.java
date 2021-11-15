@@ -1,9 +1,12 @@
 package com.mundomuebles.mundo_muebles_fd.infrastructure.repositories;
 
+import com.mundomuebles.mundo_muebles_fd.domain.ProductDTO;
+import com.mundomuebles.mundo_muebles_fd.domain.PurchaserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -36,4 +39,14 @@ public class Purchaser {
     @JoinColumn(name = "purchased_product", referencedColumnName = "code", nullable = false)
     private Product product;
 
+    public Purchaser(PurchaserDTO purchaserDTO){
+        BeanUtils.copyProperties(purchaserDTO, this);
+    }
+
+    public PurchaserDTO toPurchaserDTO()
+    {
+        PurchaserDTO purchaserDTO = new PurchaserDTO();
+        BeanUtils.copyProperties( this,purchaserDTO);
+        return purchaserDTO;
+    }
 }
