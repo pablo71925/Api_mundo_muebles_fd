@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigInteger;
 
 @RestController
 @RequestMapping(path = "purchaser")
@@ -23,6 +24,22 @@ public class PurchaserController {
     {
         return new ResponseEntity<>(new ResponseDTO("Success",
                 purchaserImpl.save(purchaserDTO), null),  HttpStatus.OK);
+    }
+
+    @PutMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> update(@RequestBody @Valid PurchaserDTO purchaserDTO)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                purchaserImpl.update(purchaserDTO), null),  HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> delete(@PathVariable("id") BigInteger id)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                purchaserImpl.delete(id), null),  HttpStatus.OK);
     }
 
     @GetMapping

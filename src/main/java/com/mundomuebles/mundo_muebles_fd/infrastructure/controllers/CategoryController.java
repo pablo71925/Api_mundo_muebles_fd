@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PostUpdate;
 import javax.validation.Valid;
 
 @RestController
@@ -17,6 +18,8 @@ public class CategoryController {
     @Autowired
     private CategoryImpl categoryImpl;
 
+
+
     @PostMapping
     public @ResponseBody
     ResponseEntity<ResponseDTO> save(@RequestBody @Valid CategoryDTO categoryDTO)
@@ -24,6 +27,24 @@ public class CategoryController {
         return new ResponseEntity<>(new ResponseDTO("Success",
                 categoryImpl.save(categoryDTO), null),  HttpStatus.OK);
     }
+
+
+    @PutMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> update(@RequestBody @Valid CategoryDTO categoryDTO)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                categoryImpl.save(categoryDTO), null),  HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> delete(@PathVariable("id") int id)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                categoryImpl.delete(id), null),  HttpStatus.OK);
+    }
+
 
     @GetMapping
     public @ResponseBody ResponseEntity<ResponseDTO> list()

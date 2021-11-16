@@ -25,6 +25,22 @@ public class ProductController {
                 productImpl.save(productDTO), null),  HttpStatus.OK);
     }
 
+    @PutMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> update(@RequestBody @Valid ProductDTO productDTO)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                productImpl.update(productDTO), null),  HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> delete(@PathVariable("code") String code)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                productImpl.delete(code), null),  HttpStatus.OK);
+    }
+
     @GetMapping
     public @ResponseBody ResponseEntity<ResponseDTO> list()
     {

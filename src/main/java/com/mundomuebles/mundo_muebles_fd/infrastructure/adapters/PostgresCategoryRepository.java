@@ -24,12 +24,13 @@ public class PostgresCategoryRepository implements CategoryAble {
     }
 
     @Override
+
     public CategoryDTO update(CategoryDTO categoryDTO) {
         return categoryRepository.save(new Category(categoryDTO)).toCategoryDTO();
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(int id) {
         categoryRepository.deleteById(id);
         return true;
     }

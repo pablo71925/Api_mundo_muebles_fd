@@ -23,7 +23,7 @@ public class ProductImpl implements ProductAble {
 
     @Override
     public ProductDTO update(ProductDTO productDTO) {
-        return null;
+        return productPersistence.update(productDTO);
     }
 
     @Override

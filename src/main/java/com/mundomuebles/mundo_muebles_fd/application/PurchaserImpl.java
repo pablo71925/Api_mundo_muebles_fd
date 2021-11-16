@@ -24,7 +24,7 @@ public class PurchaserImpl implements PurchaserAble {
 
     @Override
     public PurchaserDTO update(PurchaserDTO purchaserDTO) {
-        return null;
+        return purchaserPersistence.update(purchaserDTO);
     }
 
     @Override

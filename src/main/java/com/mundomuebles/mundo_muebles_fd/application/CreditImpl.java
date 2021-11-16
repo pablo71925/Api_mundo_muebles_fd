@@ -22,8 +22,9 @@ public class CreditImpl implements CreditAble {
     }
 
     @Override
-    public CreditDTO update(CreditDTO creditDTO) {
-        return null;
+    public CreditDTO update(CreditDTO creditDTO)
+    {
+        return creditPersistence.update(creditDTO);
     }
 
     @Override

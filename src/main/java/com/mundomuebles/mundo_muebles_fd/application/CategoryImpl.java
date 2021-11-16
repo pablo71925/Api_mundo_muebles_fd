@@ -22,13 +22,11 @@ public class CategoryImpl implements CategoryAble {
     }
 
     @Override
-    public CategoryDTO update(CategoryDTO categoryDTO) {
-        return null;
-    }
+    public CategoryDTO update(CategoryDTO categoryDTO) { return categoryPersistence.update(categoryDTO); }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public boolean delete(int id) {
+        return categoryPersistence.delete(id);
     }
 
     @Override

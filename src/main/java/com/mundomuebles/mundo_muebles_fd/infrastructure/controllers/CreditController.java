@@ -1,6 +1,7 @@
 package com.mundomuebles.mundo_muebles_fd.infrastructure.controllers;
 
 import com.mundomuebles.mundo_muebles_fd.application.CreditImpl;
+import com.mundomuebles.mundo_muebles_fd.domain.CategoryDTO;
 import com.mundomuebles.mundo_muebles_fd.domain.CreditDTO;
 import com.mundomuebles.mundo_muebles_fd.infrastructure.controllers.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,23 @@ public class CreditController {
         return new ResponseEntity<>(new ResponseDTO("Success",
                 creditImpl.save(creditDTO), null),  HttpStatus.OK);
     }
+
+    @PutMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> update(@RequestBody @Valid CreditDTO creditDTO)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                creditImpl.update(creditDTO), null),  HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> delete(@PathVariable("id") int id)
+    {
+        return new ResponseEntity<>(new ResponseDTO("Success",
+                creditImpl.delete(id), null),  HttpStatus.OK);
+    }
+
 
     @GetMapping
     public @ResponseBody ResponseEntity<ResponseDTO> list()
