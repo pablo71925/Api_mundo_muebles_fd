@@ -2,6 +2,7 @@ package com.mundomuebles.mundo_muebles_fd.infrastructure.controllers;
 
 import com.mundomuebles.mundo_muebles_fd.application.ProductImpl;
 import com.mundomuebles.mundo_muebles_fd.domain.ProductDTO;
+import com.mundomuebles.mundo_muebles_fd.exception.AppException;
 import com.mundomuebles.mundo_muebles_fd.infrastructure.controllers.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,12 +31,12 @@ public class ProductController {
     ResponseEntity<ResponseDTO> update(@RequestBody @Valid ProductDTO productDTO)
     {
         return new ResponseEntity<>(new ResponseDTO("Success",
-                productImpl.update(productDTO), null),  HttpStatus.OK);
+                productImpl.save(productDTO), null),  HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("{code}")
     public @ResponseBody
-    ResponseEntity<ResponseDTO> delete(@PathVariable("code") String code)
+    ResponseEntity<ResponseDTO> delete(@PathVariable String code) throws AppException
     {
         return new ResponseEntity<>(new ResponseDTO("Success",
                 productImpl.delete(code), null),  HttpStatus.OK);

@@ -1,6 +1,7 @@
 package com.mundomuebles.mundo_muebles_fd.application;
 
 import com.mundomuebles.mundo_muebles_fd.domain.CreditDTO;
+import com.mundomuebles.mundo_muebles_fd.exception.AppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,14 @@ public class CreditImpl implements CreditAble {
     }
 
     @Override
-    public CreditDTO update(CreditDTO creditDTO)
+    public CreditDTO update(CreditDTO creditDTO)throws AppException
     {
         return creditPersistence.update(creditDTO);
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public boolean delete(int id) throws AppException {
+        return creditPersistence.delete(id);
     }
 
     @Override

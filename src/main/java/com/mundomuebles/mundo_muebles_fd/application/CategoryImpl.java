@@ -1,6 +1,7 @@
 package com.mundomuebles.mundo_muebles_fd.application;
 
 import com.mundomuebles.mundo_muebles_fd.domain.CategoryDTO;
+import com.mundomuebles.mundo_muebles_fd.exception.AppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,10 @@ public class CategoryImpl implements CategoryAble {
     }
 
     @Override
-    public CategoryDTO update(CategoryDTO categoryDTO) { return categoryPersistence.update(categoryDTO); }
+    public CategoryDTO update(CategoryDTO categoryDTO)throws AppException { return categoryPersistence.update(categoryDTO); }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int id) throws AppException {
         return categoryPersistence.delete(id);
     }
 

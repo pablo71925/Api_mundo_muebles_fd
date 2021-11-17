@@ -2,6 +2,7 @@ package com.mundomuebles.mundo_muebles_fd.infrastructure.controllers;
 
 import com.mundomuebles.mundo_muebles_fd.application.CategoryImpl;
 import com.mundomuebles.mundo_muebles_fd.domain.CategoryDTO;
+import com.mundomuebles.mundo_muebles_fd.exception.AppException;
 import com.mundomuebles.mundo_muebles_fd.infrastructure.controllers.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,9 +38,9 @@ public class CategoryController {
                 categoryImpl.save(categoryDTO), null),  HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public @ResponseBody
-    ResponseEntity<ResponseDTO> delete(@PathVariable("id") int id)
+    ResponseEntity<ResponseDTO> delete(@PathVariable int id) throws AppException
     {
         return new ResponseEntity<>(new ResponseDTO("Success",
                 categoryImpl.delete(id), null),  HttpStatus.OK);

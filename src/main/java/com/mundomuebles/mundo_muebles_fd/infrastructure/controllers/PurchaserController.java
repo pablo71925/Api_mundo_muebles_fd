@@ -2,6 +2,7 @@ package com.mundomuebles.mundo_muebles_fd.infrastructure.controllers;
 
 import com.mundomuebles.mundo_muebles_fd.application.PurchaserImpl;
 import com.mundomuebles.mundo_muebles_fd.domain.PurchaserDTO;
+import com.mundomuebles.mundo_muebles_fd.exception.AppException;
 import com.mundomuebles.mundo_muebles_fd.infrastructure.controllers.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,16 +32,17 @@ public class PurchaserController {
     ResponseEntity<ResponseDTO> update(@RequestBody @Valid PurchaserDTO purchaserDTO)
     {
         return new ResponseEntity<>(new ResponseDTO("Success",
-                purchaserImpl.update(purchaserDTO), null),  HttpStatus.OK);
+                purchaserImpl.save(purchaserDTO), null),  HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public @ResponseBody
-    ResponseEntity<ResponseDTO> delete(@PathVariable("id") BigInteger id)
+    ResponseEntity<ResponseDTO> delete(@PathVariable BigInteger id) throws AppException
     {
         return new ResponseEntity<>(new ResponseDTO("Success",
                 purchaserImpl.delete(id), null),  HttpStatus.OK);
     }
+
 
     @GetMapping
     public @ResponseBody ResponseEntity<ResponseDTO> list()

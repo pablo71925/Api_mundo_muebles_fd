@@ -1,6 +1,7 @@
 package com.mundomuebles.mundo_muebles_fd.infrastructure.controllers;
 
 
+import com.mundomuebles.mundo_muebles_fd.exception.AppException;
 import com.mundomuebles.mundo_muebles_fd.infrastructure.controllers.dto.ErrorDTO;
 import com.mundomuebles.mundo_muebles_fd.infrastructure.controllers.dto.ResponseDTO;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,14 @@ public class ErrorHandlerController {
         });
         String message = "Algunos campos son inválidos o faltantes, por favor corrija los errores y vuelva a intentarlo";
         ResponseDTO response = new ResponseDTO( message,null , listErrors);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AppException.class)
+    protected ResponseEntity<?> handle(AppException ex){
+        List<ErrorDTO> listErrors = new ArrayList<>();
+
+        ResponseDTO response = new ResponseDTO(ex.getMessage(), null , listErrors);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
